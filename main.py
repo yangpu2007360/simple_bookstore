@@ -242,7 +242,7 @@ def create_checkout_session():
             'quantity': len(b_list),
         }],
         mode='payment',
-        success_url='https://example.com/success',
+        success_url='https://pysimplebookstore.herokuapp.com/',
         cancel_url='https://example.com/cancel',
     )
 
