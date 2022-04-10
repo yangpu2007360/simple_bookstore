@@ -1,0 +1,117 @@
+h1 {
+    width:500px;
+    margin: 0 auto;
+    color: purple;
+    text-align: center;
+}
+
+h2 {
+    width:500px;
+    margin: 0 auto;
+    color: black;
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+h3{
+    width:500px;
+    margin: 0 auto;
+    color: purple;
+    text-align: center;
+}
+
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.row {
+  padding-top: 30px;
+  width: 75%;
+  margin: auto;
+}
+
+.btn {
+  font-size: 14px;
+  font-weight: 800;
+  padding: 15px 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 0;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: mediumpurple;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to indigo on hover */
+li a:hover {
+  background-color: indigo;
+}
+
+#form{
+    color: blue;
+    padding-top: 60px;
+    padding-left: 180px;
+    text-align: left;
+}
+
+h4{
+text-align: center;
+}
+
+.test{
+    height:60px;
+    width:200px;
+    font-size: 20px;
+    font-weight: 800;
+    color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#flex-container {
+  display: flex;
+  flex-direction: row;
+}
+.col {
+  flex: 1;
+  padding: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+    #flex-container {
+    display: flex;
+    flex-direction: column;
+}
+}
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>PY online shopping</title>
+    <link href="{{ url_for('static', filename='css/shopping.css')}}" rel="stylesheet", type="text/css">
+</head>
+
+  <!-- Navigation -->
+
+<ul>
+  <li><a href="{{ url_for('get_all_items') }}">Home</a></li>
+  <li><a href="{{ url_for('register') }}">Register</a></li>
+  {% if not current_user.is_authenticated: %}
+  <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+  {% else: %}
+    <li><a href="{{ url_for('history') }}">Purchase History</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% endif %}
+
+
+  <li style="float:right"><a class="active" href="{{ url_for('see_cart') }}">Shopping Cart <i class="fa fa-shopping-cart" style="font-size:24px"></i></a></li>
+</ul>

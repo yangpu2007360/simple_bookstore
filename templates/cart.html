@@ -1,0 +1,39 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'header.html' %}
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if not list %}
+<h2>You have not added anything to your shopping cart.</h2>
+{% endif %}
+
+{% for index in range(0, length) %}
+
+
+<h2>You have {{num_list[index]}} {{ list[index] }} added to your shopping cart.<a href="{{ url_for('delete', name=list[index]) }}"> Remove this book from cart </a></h2>
+
+<hr>
+
+{% endfor %}
+<h3>Total price is ${{ numberofbooks * 10 }}.00</h3>
+<div class="center">
+
+{% if list %}
+    <form action="/create-checkout-session" method="POST" >
+      <button class="btn" type="submit" >Checkout</button>
+    </form>
+{% endif %}
+ <a href="{{ url_for('get_all_items')}}">
+<button class="btn" >Continue to shop</button>
+ </a>
+
+
+</div>
+</body>
+</html>

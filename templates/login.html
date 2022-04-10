@@ -1,0 +1,15 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'header.html' %}
+
+<h2> Please login to purchase the books.</h2>
+<h3 style="color:red;">{% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+         <p>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+</h3>
+<h3 id="form">
+    {{ wtf.quick_form(form) }}
+</h3>

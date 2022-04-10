@@ -1,0 +1,15 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'header.html' %}
+
+
+<h2>Hi, here is your purchase history</h2>
+
+{% for order in order_history %}
+<h3> {{ order.created_at }} </h3>
+<h4>{{ order.title }}</h4>
+<hr>
+
+{% endfor %}
+
+</body>
+</html>
