@@ -89,7 +89,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     buyer = db.Column(db.String(100))
     title = db.Column(db.String(100), unique=False)
-    created_at = db.Column(
+    created_at = db.Column(db.String(100),
         # db.DateTime,
         # default=datetime.datetime.now,
         nullable=False)
