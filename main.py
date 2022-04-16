@@ -237,7 +237,7 @@ def create_checkout_session():
     new_order = Order(
         buyer=current_user.name,
         title=books_to_purchase,
-        created_at=now.strftime("%Y-%m-%d %H:%M:%S")
+        created_at=now.strftime("%Y-%m-%d")
     )
 
     # new_order = {"buyer": current_user.name, "title": books_to_purchase}
