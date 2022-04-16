@@ -22,6 +22,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kdkpokblqpihsb:b7166020c6543
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+
 db = SQLAlchemy(app)
 
 b_list = []
@@ -86,28 +89,9 @@ class Order(db.Model):
     buyer = db.Column(db.String(100))
     title = db.Column(db.String(100), unique=False)
     created_at = db.Column(
-        db.DateTime,
-        default=datetime.datetime.utcnow,
+        # db.DateTime,
+        # default=datetime.datetime.now,
         nullable=False)
-
-
-# orders_table = db.Table(
-#     'orders',
-#     db.Column(
-#         'buyer', db.String(100),
-#     ),
-#
-#     db.Column(
-#         'title', db.String(100),
-#     ),
-#
-#     db.Column(
-#         'created_at', db.DateTime,
-#         default=datetime.datetime.utcnow,
-#         nullable=False
-#     )
-# )
-
 
 db.create_all()
 
@@ -224,6 +208,10 @@ def logout():
 def history():
     # get the orders table and pass to template.
     order_history = Order.query.filter_by(buyer=current_user.name)
+    #
+    # stmt = sqlalchemy.select(orders).where(
+    #     orders_table.c.user_id == id).where(likes_table.c.tweet_id == tid)
+
     return render_template("purchase_history.html", order_history=order_history)
 
 
@@ -245,10 +233,11 @@ def create_checkout_session():
         success_url='https://pysimplebookstore.herokuapp.com/',
         cancel_url='https://example.com/cancel',
     )
-
+    now = datetime.datetime.now()
     new_order = Order(
         buyer=current_user.name,
         title=books_to_purchase,
+        created_at=now.strftime("%Y-%m-%d %H:%M:%S")
     )
 
     # new_order = {"buyer": current_user.name, "title": books_to_purchase}
