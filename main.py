@@ -20,7 +20,7 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kdkpokblqpihsb:b7166020c6543466689b09728276fa95fb57b34508271e005ce0c0b6c5280153@ec2-3-230-122-20.compute-1.amazonaws.com:5432/d6e796g5481147'
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
