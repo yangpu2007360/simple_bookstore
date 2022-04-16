@@ -17,7 +17,8 @@ import stripe
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kdkpokblqpihsb:b7166020c6543466689b09728276fa95fb57b34508271e005ce0c0b6c5280153@ec2-3-230-122-20.compute-1.amazonaws.com:5432/d6e796g5481147'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kdkpokblqpihsb:b7166020c6543466689b09728276fa95fb57b34508271e005ce0c0b6c5280153@ec2-3-230-122-20.compute-1.amazonaws.com:5432/d6e796g5481147'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://mkqhuuyggdrsud:2cba679f94881aafac2caabc63ba69a4120b705237733a825fc7df7b7499c93d@ec2-44-199-143-43.compute-1.amazonaws.com:5432/ddlta6lgpatec0'
 
 ##CONNECT TO DB
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
