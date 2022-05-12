@@ -1,13 +1,14 @@
 import datetime
 
-
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import TextAreaField
+from wtforms.widgets import TextArea
+from wtforms import StringField, SubmitField, PasswordField,URLField
 from wtforms.validators import DataRequired, URL, Email
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
@@ -17,14 +18,11 @@ import stripe
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kdkpokblqpihsb:b7166020c6543466689b09728276fa95fb57b34508271e005ce0c0b6c5280153@ec2-3-230-122-20.compute-1.amazonaws.com:5432/d6e796g5481147'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mkqhuuyggdrsud:2cba679f94881aafac2caabc63ba69a4120b705237733a825fc7df7b7499c93d@ec2-44-199-143-43.compute-1.amazonaws.com:5432/ddlta6lgpatec0'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mkqhuuyggdrsud:2cba679f94881aafac2caabc63ba69a4120b705237733a825fc7df7b7499c93d@ec2-44-199-143-43.compute-1.amazonaws.com:5432/ddlta6lgpatec0'
 
 ##CONNECT TO DB
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-
 
 db = SQLAlchemy(app)
 
@@ -62,6 +60,12 @@ class RegisterForm(FlaskForm):
     password = StringField("Password", validators=[DataRequired()])
     submit = SubmitField("SIGN ME UP")
 
+class UploadForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    summary = TextAreaField("Summary", validators=[DataRequired()], widget=TextArea())
+    image = URLField("ImageURL", validators=[DataRequired()])
+    submit = SubmitField("Add this book")
+
 
 class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
@@ -77,11 +81,13 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(100))
 
 
-
 class Book(db.Model):
     __tablename__ = "books"
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), unique=True)
+    title = db.Column(db.String(100), unique=False)
+    summary = db.Column(db.String(100), unique=False)
+    image = db.Column(db.String(100), unique=False)
+
 
 
 class Order(db.Model):
@@ -90,16 +96,37 @@ class Order(db.Model):
     buyer = db.Column(db.String(100))
     title = db.Column(db.String(100), unique=False)
     created_at = db.Column(db.String(100),
-        # db.DateTime,
-        # default=datetime.datetime.now,
-        nullable=False)
+                           # db.DateTime,
+                           # default=datetime.datetime.now,
+                           nullable=False)
+
 
 db.create_all()
 
-
+number_of_books = 0
 @app.route('/')
 def get_all_items():
-    return render_template("index.html")
+    book_data = Book.query.all()
+    global number_of_books
+    number_of_books= len(book_data)
+    print(book_data)
+    return render_template("index.html", data=book_data)
+
+@app.route('/admin', methods=["GET", "POST"])
+def admin():
+    form = UploadForm()
+    if form.validate_on_submit():
+        new_book = Book(
+            id=number_of_books + 1,
+            title=form.title.data,
+            summary=form.summary.data,
+            image=form.image.data,
+        )
+        db.session.add(new_book)
+        db.session.commit()
+        return redirect(url_for("get_all_items"))
+    return render_template("addbook.html", form=form)
+
 
 
 @app.route('/register', methods=["GET", "POST"])
@@ -160,6 +187,15 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route('/singlepage/<name>', methods=["GET", "POST"])
+def singlepage(name):
+    print(name)
+    selected_book = Book.query.filter_by(title=name).one()
+
+    print(selected_book)
+    return render_template("singlepage.html", name=name, summary=selected_book)
+
+
 @app.route("/cart/<name>", methods=["GET", "POST"])
 def cart(name):
     if not current_user.is_authenticated:
@@ -180,7 +216,7 @@ def delete(name):
     unique_list, num_list = convert(b_list)
     length = len(unique_list)
     return render_template("cart.html", list=unique_list, num_list=num_list, length=length,
-                    numberofbooks=len(b_list))
+                           numberofbooks=len(b_list))
 
 
 @app.route("/see_cart")

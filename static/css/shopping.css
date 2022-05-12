@@ -11,7 +11,7 @@ h2 {
     color: black;
     text-align: center;
     padding-top: 70px;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
 
 h3{
@@ -22,27 +22,16 @@ h3{
 }
 
 
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.row {
-  padding-top: 30px;
-  width: 75%;
-  margin: auto;
-}
 
 .btn {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 800;
   padding: 15px 25px;
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 0;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  size:
 
 }
 
@@ -73,7 +62,7 @@ li a:hover {
 
 #form{
     color: blue;
-    padding-top: 60px;
+    padding-top: 10px;
     padding-left: 180px;
     text-align: left;
 }
@@ -99,13 +88,28 @@ text-align: center;
   align-items: center;
 }
 
-#flex-container {
-  display: flex;
-  flex-direction: row;
+
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 22.3%;
+  padding: 13px;
 }
-.col {
-  flex: 1;
-  padding: 16px;
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+p {
+ width: 70%
+ justify-content: center;
 }
 
 @media only screen and (max-width: 600px) {
@@ -113,5 +117,18 @@ text-align: center;
     display: flex;
     flex-direction: column;
 }
+}
+
+.checkbox {
+    height: 50px;
+    width: 300px;
+    background-color: lightblue;
+    font-size: large;
+}
+
+#summary {
+  display: flex;
+  align-items: center;
+  justify-content: center
 }
 
