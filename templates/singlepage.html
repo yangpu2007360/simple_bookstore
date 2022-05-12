@@ -1,0 +1,19 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'header.html' %}
+
+
+
+<html lang="en">
+<h2>Here is the summary for {{name}}</h2>
+<p id="summary">{{summary.summary}}</p>
+<div class = 'center'>
+<a href="{{ url_for('cart', name = name) }}">
+    <button class = "btn">Add to Cart</button>
+</a>
+</div>
+
+
+
+
+
+</html>

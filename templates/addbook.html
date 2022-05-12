@@ -1,0 +1,23 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'header.html' %}
+
+<h2> Add a book to store</h2>
+<h4> This page will only be available to admin during actual development</h4>
+<h3 style="color:red;">{% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+         <p>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+</h3>
+<h3 id="form">
+    <form method="POST">
+        {{ form.csrf_token }}
+    <p>Title: {{form.title}}</p>
+    <p>ImageURL: {{form.image}}</p>
+    <p> Enter a brief summary of the book </p>
+    {{ form.summary(cols="60", rows="20", id='larger') }}
+    {{form.submit(class_ = "checkbox")}}
+    </form>
+</h3>
