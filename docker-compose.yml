@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  web:
+    build: ./app
+    image: 316416256946.dkr.ecr.us-east-1.amazonaws.com/onlineshopping:workshop2_web
+    command: gunicorn nc_tutorials.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+      - static_volume:/usr/src/app/static
+    expose:
+      - 8000
+    environment:
+      - DB_NAME=bookdatabase-1
+      - DB_USER=postgres
+      - DB_PASSWORD=admin123
+      - DB_HOST=bookdatabase-1.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com
+      - DB_PORT=5432
+      - DATABASE=postgres
+      - VIRTUAL_HOST=ec2-34-203-123-55.compute-1.amazonaws.com
+      - VIRTUAL_PORT=8000
+  nginx:
+    build: ./nginx
+    image: 316416256946.dkr.ecr.us-east-1.amazonaws.com/onlineshopping:workshop2_nginx
+    volumes:
+      - static_volume:/usr/src/app/static
+    ports:
+      - 8000:80
+    depends_on:
+      - web
+volumes:
+  static_volume:
