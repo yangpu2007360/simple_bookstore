@@ -5,7 +5,7 @@ services:
     image: 316416256946.dkr.ecr.us-east-1.amazonaws.com/onlineshopping:bookstore_image
     command: gunicorn nc_tutorials.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./:/usr/src/online_shopping/
+      - ./:/usr/src/
       - static_volume:/usr/src/static
     expose:
       - 8000
