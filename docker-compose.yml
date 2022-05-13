@@ -1,12 +1,12 @@
 version: "3.8"
 services:
   web:
-    build: ./online_shopping
+    build: ./
     image: 316416256946.dkr.ecr.us-east-1.amazonaws.com/onlineshopping:bookstore_image
     command: gunicorn nc_tutorials.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./online_shopping/:/usr/src/online_shopping/
-      - static_volume:/usr/src/online_shopping/static
+      - ./:/usr/src/online_shopping/
+      - static_volume:/usr/src/static
     expose:
       - 8000
     environment:
@@ -22,7 +22,7 @@ services:
     build: ./nginx
     image: 316416256946.dkr.ecr.us-east-1.amazonaws.com/onlineshopping:bookstore_image
     volumes:
-      - static_volume:/usr/src/online_shopping/static
+      - static_volume:/usr/src/static
     ports:
       - 8000:80
     depends_on:
