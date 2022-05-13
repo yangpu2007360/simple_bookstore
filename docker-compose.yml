@@ -8,7 +8,7 @@ services:
       - ./:/usr/src/
       - static_volume:/usr/src/static
     expose:
-      - 8000
+      - 9010
     environment:
       - DB_NAME=bookdatabase-1
       - DB_USER=postgres
@@ -24,7 +24,8 @@ services:
     volumes:
       - static_volume:/usr/src/static
     ports:
-      - 8000:80
+      - "10080:80"
+      - "10443:443"
     depends_on:
       - web
 volumes:
