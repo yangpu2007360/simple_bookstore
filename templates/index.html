@@ -3,23 +3,24 @@
 
 <body>
 
-    <h1> Welcome to 10 dollars bookstore</h1>
-    <h3> The simplest online bookstore you can find</h3>
-    <h3> Every book is 10 dollars </h3>
+  <h1> Welcome to 100 dollars bookstore</h1>
+  <h3> The simplest online bookstore you can find</h3>
+  <h3> Every book is 10 dollars </h3>
 
-<!--    <div class="row">-->
-    <div class="row">
+  <!--    <div class="row">-->
+  <div class="row">
 
     {% for book in data %}
-      <div class="column">
-          <a href="{{ url_for('singlepage', name = book.title)}}">
+    <div class="column">
+      <a href="{{ url_for('singlepage', name = book.title)}}">
         <img src="{{book.image}}" alt=data.title style="width:100%">
-          </a>
-      </div>
+      </a>
+    </div>
     {% endfor %}
 
-    </div>
+  </div>
 
 
 </body>
+
 </html>
