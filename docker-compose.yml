@@ -1,10 +1,22 @@
 version: '3.4'
 
 services:
+
   onlineshopping:
     image: onlineshopping
+    restart: always
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
       - 8000:8000
+
+    environment:
+      - DB_NAME=bookdatabase-1
+      - DB_USER=postgres
+      - DB_PASSWORD=admin123
+      - DB_HOST=bookdatabase-1.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com
+      - DB_PORT=5432
+      - DATABASE=postgres
+      - VIRTUAL_HOST=ec2-34-203-123-55.compute-1.amazonaws.com
+      - VIRTUAL_PORT=8000
