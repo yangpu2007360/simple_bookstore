@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     expose:
-      - 4444
+      - 8000
 
     environment:
       - DB_NAME=yangpu2007360
