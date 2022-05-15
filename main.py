@@ -23,10 +23,10 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mkqhuuyggdrsud:2cba679f94881aafac2caabc63ba69a4120b705237733a825fc7df7b7499c93d@ec2-44-199-143-43.compute-1.amazonaws.com:5432/ddlta6lgpatec0'
 
 ##CONNECT TO DB
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin123@bookstore3.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com:5432/yangpu2007360'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin123@bookstore3.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com:5432/yangpu2007360'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
