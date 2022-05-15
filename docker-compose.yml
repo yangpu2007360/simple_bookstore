@@ -1,9 +1,9 @@
-version: '3.8'
+version: '3.4'
 
 services:
 
   onlineshopping:
-    image: 316416256946.dkr.ecr.us-east-1.amazonaws.com/onlineshopping:flaskweb
+    image: onlineshopping
     command: gunicorn yangpu2007360.wsgi:application --bind 0.0.0.0:8000
     restart: always
     build:
