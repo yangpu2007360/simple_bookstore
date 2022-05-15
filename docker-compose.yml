@@ -20,4 +20,4 @@ services:
       - DB_PORT=5432
       - DATABASE=postgres
       - VIRTUAL_HOST=ec2-34-203-123-55.compute-1.amazonaws.com
-      - VIRTUAL_PORT=8000
+      - VIRTUAL_PORT=4444
