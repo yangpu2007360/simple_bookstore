@@ -4,7 +4,7 @@ services:
 
   onlineshopping:
     image: onlineshopping
-    command: gunicorn yangpu2007360.wsgi:application --bind 0.0.0.0:4444
+    command: gunicorn yangpu2007360.wsgi:application --bind 0.0.0.0:8000
     restart: always
     build:
       context: .
@@ -20,4 +20,4 @@ services:
       - DB_PORT=5432
       - DATABASE=postgres
       - VIRTUAL_HOST=ec2-34-203-123-55.compute-1.amazonaws.com
-      - VIRTUAL_PORT=4444
+      - VIRTUAL_PORT=8000
