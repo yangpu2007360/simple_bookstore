@@ -4,13 +4,13 @@ services:
 
   onlineshopping:
     image: onlineshopping
-    command: gunicorn yangpu2007360.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn yangpu2007360.wsgi:application --bind 0.0.0.0:4444
     restart: always
     build:
       context: .
       dockerfile: ./Dockerfile
     expose:
-      - 8000
+      - 4444
 
     environment:
       - DB_NAME=yangpu2007360
