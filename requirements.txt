@@ -18,7 +18,7 @@ itsdangerous==2.0.1
 Jinja2==3.0.3
 MarkupSafe==2.0.1
 mypy-extensions==0.4.3
-psycopg2-binary==2.8.3
+psycopg2-binary
 requests==2.27.1
 SQLAlchemy==1.4.29
 sqlalchemy-orm==1.2.2
