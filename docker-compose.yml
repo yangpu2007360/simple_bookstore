@@ -3,7 +3,7 @@ version: '3.4'
 services:
 
   onlineshopping:
-    image: onlineshopping
+    image: 316416256946.dkr.ecr.us-east-1.amazonaws.com/onlineshopping:flaskweb
     restart: always
     build:
       context: .
