@@ -1,4 +1,6 @@
 import datetime
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
@@ -22,10 +24,14 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
 ##CONNECT TO DB
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'jdbc:postgresql://bookstore2.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com'
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin123@bookstore3.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com:5432/yangpu2007360'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 b_list = []
 
@@ -289,4 +295,6 @@ def create_checkout_session():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host=os.getenv('IP', '0.0.0.0'),
+            port=int(os.getenv('PORT', 4444)))
