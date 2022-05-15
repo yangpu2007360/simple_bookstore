@@ -23,10 +23,10 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mkqhuuyggdrsud:2cba679f94881aafac2caabc63ba69a4120b705237733a825fc7df7b7499c93d@ec2-44-199-143-43.compute-1.amazonaws.com:5432/ddlta6lgpatec0'
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shopping.db'
 
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin123@bookstore3.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com:5432/yangpu2007360'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin123@bookstore3.c0pa5dbxh2kl.us-east-1.rds.amazonaws.com:5432/yangpu2007360'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -92,7 +92,7 @@ class Book(db.Model):
     __tablename__ = "books"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=False)
-    summary = db.Column(db.String(100), unique=False)
+    summary = db.Column(db.String(10000), unique=False)
     image = db.Column(db.String(100), unique=False)
 
 
@@ -295,5 +295,7 @@ def create_checkout_session():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host=os.getenv('IP', '0.0.0.0'),
+            port=int(os.getenv('PORT', 4444)))
 
